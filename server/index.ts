@@ -62,10 +62,15 @@ app.use((req, res, next) => {
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || '5000', 10);
   const isReplit = !!process.env.REPL_ID;
+  const isProduction = app.get("env") === "production";
+  
+  // Bind to 0.0.0.0 in production or on Replit (required by cloud platforms like Render, Railway, etc.)
+  // Use localhost only for local development
+  const host = isProduction || isReplit ? "0.0.0.0" : "localhost";
   
   server.listen({
     port,
-    host: isReplit ? "0.0.0.0" : "localhost",
+    host,
     ...(isReplit && { reusePort: true }),
   }, () => {
     log(`serving on port ${port}`);
