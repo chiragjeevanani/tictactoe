@@ -36,7 +36,6 @@ A real-time multiplayer Tic Tac Toe game where players can challenge friends onl
 ### Development
 - **tsx** - TypeScript execution
 - **ESBuild** - Production bundling
-- **Replit** - Development & deployment platform
 
 ## 🚀 Quick Start
 
